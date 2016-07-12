@@ -75,10 +75,15 @@ You have <input readonly type="text" name="countdown" size="3" value="141" style
 <input type="submit" name="method" value="Searchbystudent" class="button"/>
 <input type="submit" name="method" value="Searchbyhomework" class="button"/>
 <input type="submit" name="method" value="Searchbyquiz" class="button"/>
+</td>
+</tr>
+<tr align="center"><td>
 <input type="submit" name="method" value="Searchbytest" class="button"/>
 <input type="submit" name="method" value="Searchbyproject" class="button"/>
-
 <input type="submit" name="method" value="Averagebystudent" class="button"/>
+</td>
+</tr>
+<tr align="center"><td>
 <input type="submit" name="method" value="Averagebystudenttype" class="button"/>
 <input type="submit" name="method" value="highlowbytype" class="button"/>
 
@@ -137,13 +142,9 @@ You have <input readonly type="text" name="countdown" size="3" value="141" style
     </td>
     <td align="center">
 	<c:choose>
-        <c:when test="${param.method == 'Edit' and student.gradeid == student.gradeid}">
+        <c:when test="${param.method == 'Edit' and param.gradeid == student.gradeid}">
             <input type="text" name="studentid" style="padding: 0"
                 value="<c:out value="${student.studentid}"/>" />
-        </c:when>
-        <c:when test="${param.method == 'Insert' }">
-            <input type="text" name="insertstudentid" style="padding: 0"
-                value="<c:out value=""/>" />
         </c:when>
         <c:otherwise><c:out value="${student.studentid}"/></c:otherwise>
     </c:choose>
@@ -151,14 +152,11 @@ You have <input readonly type="text" name="countdown" size="3" value="141" style
     
     <td align="center">
 	<c:choose>
-        <c:when test="${param.method == 'Edit' and student.gradeid == student.gradeid}">
+        <c:when test="${param.method == 'Edit' and param.gradeid == student.gradeid}">
             <input type="text" name="assignmentname" style="padding: 0"
                 value="<c:out value="${student.assignmentname}"/>" />
         </c:when>
-        <c:when test="${param.method == 'Insert' }">
-            <input type="text" name="insertassignmentname" style="padding: 0"
-                value="<c:out value=""/>" />
-        </c:when>
+        
         <c:otherwise><c:out value="${student.assignmentname}"/></c:otherwise>
     </c:choose>
 	</td>
@@ -169,10 +167,7 @@ You have <input readonly type="text" name="countdown" size="3" value="141" style
             <input type="text" name="type" style="padding: 0"
                 value="<c:out value="${student.type}"/>" />
         </c:when>
-        <c:when test="${param.method == 'Insert'}">
-            <input type="text" name="inserttype" style="padding: 0"
-                value="<c:out value=""/>" />
-        </c:when>
+       
         <c:otherwise><c:out value="${student.type}"/></c:otherwise>
     </c:choose>
  	</td> 
@@ -183,10 +178,7 @@ You have <input readonly type="text" name="countdown" size="3" value="141" style
             <input type="text" name="gradedate" style="padding: 0"
                 value="<fmt:formatDate pattern="yy-MMM-dd" value="${student.gradedate}" />" />
         </c:when>
-        <c:when test="${param.method == 'Insert' }">
-            <input type="text" name="insertgradedate" style="padding: 0"
-                value="<fmt:formatDate pattern="yy-MMM-dd" value="${Date}" />" />
-        </c:when>
+        
         <c:otherwise><fmt:formatDate pattern="yy-MMM-dd" value="${student.gradedate}" /></c:otherwise>
     </c:choose>
  	</td> 
@@ -196,17 +188,69 @@ You have <input readonly type="text" name="countdown" size="3" value="141" style
             <input type="text" name="grade" style="padding: 0"
                 value="<c:out value="${student.grade}"/>" />
         </c:when>
-        <c:when test="${param.method == 'Insert'}">
-            <input type="text" name="insertgrade" style="padding: 0"
-                value="<c:out value=""/>" />
-        </c:when>
+        
         <c:otherwise><c:out value="${student.grade}"/></c:otherwise>
     </c:choose>
 	</td>
 	
 	 
-	 </tr> 
-	 </c:forEach>
+	 </tr>
+	  
+	 </c:forEach>	 
+	 
+	 <c:if test="${param.method == 'Insert'}">
+	 <tr>
+	 <td  style="width:5%" align="center" >
+	 <c:choose>
+	  <c:when test="${param.method == 'Insert' }">
+	<input type="checkbox" name="gradeidd" value=""/>
+	</c:when>
+	</c:choose>
+    </td>
+     <td align="center">
+	<c:choose>
+	  <c:when test="${param.method == 'Insert' }">
+            <input type="text" name="insertstudentid" style="padding: 0"
+                value="<c:out value=""/>" />
+        </c:when>
+        </c:choose>
+        </td>
+        <td align="center">
+	<c:choose> 
+        <c:when test="${param.method == 'Insert' }">
+            <input type="text" name="insertassignmentname" style="padding: 0"
+                value="<c:out value=""/>" />
+        </c:when>
+        
+        </c:choose>
+        </td>
+         <td align="center">
+	<c:choose>
+         <c:when test="${param.method == 'Insert'}">
+            <input type="text" name="inserttype" style="padding: 0"
+                value="<c:out value=""/>" />
+        </c:when>
+        </c:choose>
+        </td>
+        
+       <td align="center">
+	<c:choose> 
+        <c:when test="${param.method == 'Insert' }">
+            <input type="text" name="insertgradedate" style="padding: 0"
+                value="<fmt:formatDate pattern="yy-MMM-dd" value="${Date}" />" />
+        </c:when>
+         </c:choose>
+         </td>
+         <td align="center">
+	<c:choose>   
+         <c:when test="${param.method == 'Insert'}">
+            <input type="text" name="insertgrade" style="padding: 0"
+                value="<c:out value=""/>" />
+        </c:when>
+        </c:choose>
+        </td>
+	 </tr>
+	 </c:if>
 	  </tbody> 
  </table> 
  </c:if>
