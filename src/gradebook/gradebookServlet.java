@@ -214,11 +214,14 @@ public class gradebookServlet extends HttpServlet {
 		 }
 		 else if(method.equals("highlowbytype"))
 		 {
-			 HashMap<String, HashMap<String,String>> highlowbytype=customTools.Dataget.highlowbytype();
-			 List<model.Student> Students=customTools.Dataget.Student();
 			 
-				session.setAttribute("Students", Students);
-			 session.setAttribute("highlowbytype", highlowbytype);
+			 List<model.Student> Students=customTools.Dataget.Student();
+			 HashMap<String, String> smallmap=customTools.Dataget.highlowbytype();
+		      HashMap<String, String> smallmap1=customTools.Dataget.highlowbytype1();
+		        
+			 session.setAttribute("Students", Students);
+			 session.setAttribute("highlowbytype", smallmap);
+			 session.setAttribute("highlowbytype1", smallmap1);
 			 request.getServletContext().getRequestDispatcher("/gradebook.jsp").forward(request, response);; 
 		 }
 		

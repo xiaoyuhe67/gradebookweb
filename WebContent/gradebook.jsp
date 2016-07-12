@@ -328,19 +328,17 @@ You have <input readonly type="text" name="countdown" size="3" value="141" style
  <c:forEach var="highlow" items="${highlowbytype}">
  <c:set var="mykey" value="${highlow.key}"/>
  <c:set var="myvalue" value="${highlowbytype[mykey]}"/> 
- <c:forEach var="mykeyy" items="${myvalue}">
 <tr>
 	<td  style="width:5%" align="center" >
-	<c:out value="${highlow.key}"/>
+	<c:out value="${mykey}"/>
     </td>
     <td  style="width:5%" align="center" >
-	<c:out value="${mykeyy.key}"/>
+	<c:out value="${myvalue}"/>
     </td>
     <td  style="width:5%" align="center" >
-	<c:out value="${mykeyy.value}"/>
+	<c:out value="${highlowbytype1[mykey]}"/>
     </td>		 
 	 </tr> 
-	 </c:forEach>
 	 </c:forEach>
 	  </tbody> 
  </table> 

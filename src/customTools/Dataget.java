@@ -342,25 +342,47 @@ public class Dataget {
         }return averagebystudent;
     }
 	
-	public static HashMap<String, HashMap<String,String>> highlowbytype ()
+	public static HashMap<String,String> highlowbytype ()
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();   
-        HashMap<String, HashMap<String,String>> averagebystudent=new HashMap<String,HashMap<String,String>>();
+        
         HashMap<String, String> smallmap=new HashMap<String,String>();
+        HashMap<String, String> smallmap1=new HashMap<String,String>();
         String qString = "select b.type,max(b.grade) ,min(b.grade)  from Student b group by b.type";
         try{
             Query query = em.createQuery(qString);
             List<Object[]> resultList = query.getResultList();
             for(Object[] result: resultList)
             {
-            	smallmap.put(result[1].toString(),result[2].toString());
-            	averagebystudent.put(result[0].toString(), smallmap);
+            	smallmap.put(result[0].toString(),result[1].toString());
+            	
             }
         }catch (Exception e){
             e.printStackTrace();
         }finally{
             em.close();
-        }return averagebystudent;
+        }return smallmap;
+    }
+	public static HashMap<String,String> highlowbytype1 ()
+    {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();   
+        
+        HashMap<String, String> smallmap1=new HashMap<String,String>();
+        String qString = "select b.type,max(b.grade) ,min(b.grade)  from Student b group by b.type";
+        try{
+            Query query = em.createQuery(qString);
+            List<Object[]> resultList = query.getResultList();
+            for(Object[] result: resultList)
+            {
+            	
+            	smallmap1.put(result[0].toString(),result[2].toString());
+            	
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally{
+            em.close();
+        }return smallmap1;
     }
 	
 	
